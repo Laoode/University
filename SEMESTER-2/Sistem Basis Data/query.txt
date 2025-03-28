@@ -1,0 +1,443 @@
+values(22222,'Einstein','Physics',95000),
+(12121,'Wu','Finance',90000),
+(32343,'El Said','History',60000),
+(45565,'Katz','Comp.Sci.',75000),
+(98345,'Kim','Elec.Eng.',80000),
+(76766,'Crick','Biology',72000),
+(10101,'Srinivasan','Comp.Sci.',65000),
+(58583,'Califieri','History',62000),
+(83821,'Brandt','Comp.Sci.',92000),
+(15151,'Mozart','Music',40000),
+(33456,'Gold','Physics',87000),
+(76543,'Singh','Finance',80000);
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> create database university_instructors;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> show databases;
++------------------------+
+| Database               |
++------------------------+
+| information_schema     |
+| mysql                  |
+| performance_schema     |
+| sys                    |
+| university_instructors |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> use university_instructors;
+Database changed
+mysql> show tables;
+Empty set (0.06 sec)
+
+mysql> create table student(
+    -> id INT,
+    -> name VARCHAR(20),
+    -> dept_name VARCHAR(20),
+    -> salary NUMERIC(8,2))
+    -> ENGINE = InnoDB;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> show tables;
++----------------------------------+
+| Tables_in_university_instructors |
++----------------------------------+
+| student                          |
++----------------------------------+
+1 row in set (0.01 sec)
+
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | YES  |     | NULL    |       |
+| name      | varchar(20)  | YES  |     | NULL    |       |
+| dept_name | varchar(20)  | YES  |     | NULL    |       |
+| salary    | decimal(8,2) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> ALTER TABLE student
+    -> MODIFY id int not null;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| name      | varchar(20)  | YES  |     | NULL    |       |
+| dept_name | varchar(20)  | YES  |     | NULL    |       |
+| salary    | decimal(8,2) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student
+    -> modify name varchar(20) not null,
+    -> modify dept_name varchar(20) not null,
+    -> modify salary decimal(8,2) not null;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| name      | varchar(20)  | NO   |     | NULL    |       |
+| dept_name | varchar(20)  | NO   |     | NULL    |       |
+| salary    | decimal(8,2) | NO   |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student
+    -> modify salary decimal(8,2) not null default 0;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| name      | varchar(20)  | NO   |     | NULL    |       |
+| dept_name | varchar(20)  | NO   |     | NULL    |       |
+| salary    | decimal(8,2) | NO   |     | 0.00    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table student
+    -> modify salary int unsigned not null default 0;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| name      | varchar(20)  | NO   |     | NULL    |       |
+| dept_name | varchar(20)  | NO   |     | NULL    |       |
+| salary    | int unsigned | NO   |     | 0       |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student(id,name,dept_name,salary)
+    -> values(22222,'Einstein','Physics',95000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   |     | NULL    |       |
+| name      | varchar(20)  | NO   |     | NULL    |       |
+| dept_name | varchar(20)  | NO   |     | NULL    |       |
+| salary    | int unsigned | NO   |     | 0       |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++-------+----------+-----------+--------+
+| id    | name     | dept_name | salary |
++-------+----------+-----------+--------+
+| 22222 | Einstein | Physics   |  95000 |
++-------+----------+-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into student(id,name,dept_name,salary)
+    -> values(22222,'Einstein','Physics',95000),
+    -> (12121,'Wu','Finance',90000),
+    -> (32343,'El Said','History',60000),
+    -> (45565,'Katz','Comp.Sci.',75000),
+    -> (98345,'Kim','Elec.Eng.',80000),
+    -> (76766,'Crick','Biology',72000),
+    -> (10101,'Srinivasan','Comp.Sci.',65000),
+    -> (58583,'Califieri','History',62000),
+    -> (83821,'Brandt','Comp.Sci.',92000),
+    -> (15151,'Mozart','Music',40000),
+    -> (33456,'Gold','Physics',87000),
+    -> (76543,'Singh','Finance',80000);
+Query OK, 12 rows affected (0.01 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+mysql> select * form student;
+
+mysql> select * from student;
++-------+------------+-----------+--------+
+| id    | name       | dept_name | salary |
++-------+------------+-----------+--------+
+| 22222 | Einstein   | Physics   |  95000 |
+| 12121 | Wu         | Finance   |  90000 |
+| 32343 | El Said    | History   |  60000 |
+| 45565 | Katz       | Comp.Sci. |  75000 |
+| 98345 | Kim        | Elec.Eng. |  80000 |
+| 76766 | Crick      | Biology   |  72000 |
+| 10101 | Srinivasan | Comp.Sci. |  65000 |
+| 58583 | Califieri  | History   |  62000 |
+| 83821 | Brandt     | Comp.Sci. |  92000 |
+| 15151 | Mozart     | Music     |  40000 |
+| 33456 | Gold       | Physics   |  87000 |
+| 76543 | Singh      | Finance   |  80000 |
++-------+------------+-----------+--------+
+12 rows in set (0.00 sec)
+
+mysql> alter table student
+    -> add primary key (id);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   | PRI | NULL    |       |
+| name      | varchar(20)  | NO   |     | NULL    |       |
+| dept_name | varchar(20)  | NO   |     | NULL    |       |
+| salary    | int unsigned | NO   |     | 0       |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select id as NIM,
+    -> name as Nama,
+    -> dept_name as Jurusan,
+    -> salary as Gaji
+    -> from student;
++-------+------------+-----------+-------+
+| NIM   | Nama       | Jurusan   | Gaji  |
++-------+------------+-----------+-------+
+| 10101 | Srinivasan | Comp.Sci. | 65000 |
+| 12121 | Wu         | Finance   | 90000 |
+| 15151 | Mozart     | Music     | 40000 |
+| 22222 | Einstein   | Physics   | 95000 |
+| 32343 | El Said    | History   | 60000 |
+| 33456 | Gold       | Physics   | 87000 |
+| 45565 | Katz       | Comp.Sci. | 75000 |
+| 58583 | Califieri  | History   | 62000 |
+| 76543 | Singh      | Finance   | 80000 |
+| 76766 | Crick      | Biology   | 72000 |
+| 83821 | Brandt     | Comp.Sci. | 92000 |
+| 98345 | Kim        | Elec.Eng. | 80000 |
++-------+------------+-----------+-------+
+12 rows in set (0.00 sec)
+
+mysql> create table takes(
+    -> id int not null,
+    -> name varchar (20),
+    -> sks int,
+    -> beasiswa text,
+    -> primary key (id),
+    -> constraint fk_takes_student
+    -> foreign key (id) references student (name)
+    -> )engine = InnoDB;
+ERROR 3780 (HY000): Referencing column 'id' and referenced column 'name' in foreign key constraint 'fk_takes_student' are incompatible.
+mysql> create table takes(
+    -> id int not null,
+    -> name varchar (20) not null,
+    ->  sks int,
+    -> beasiswa text,
+    -> primary key (id),
+    -> constraint fk_takes_student
+    -> foreign key (id) references student (name)
+    -> )engine = InnoDB;
+ERROR 3780 (HY000): Referencing column 'id' and referenced column 'name' in foreign key constraint 'fk_takes_student' are incompatible.
+mysql> describe student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| id        | int          | NO   | PRI | NULL    |       |
+| name      | varchar(20)  | NO   |     | NULL    |       |
+| dept_name | varchar(20)  | NO   |     | NULL    |       |
+| salary    | int unsigned | NO   |     | 0       |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> select * from student;
++-------+------------+-----------+--------+
+| id    | name       | dept_name | salary |
++-------+------------+-----------+--------+
+| 10101 | Srinivasan | Comp.Sci. |  65000 |
+| 12121 | Wu         | Finance   |  90000 |
+| 15151 | Mozart     | Music     |  40000 |
+| 22222 | Einstein   | Physics   |  95000 |
+| 32343 | El Said    | History   |  60000 |
+| 33456 | Gold       | Physics   |  87000 |
+| 45565 | Katz       | Comp.Sci. |  75000 |
+| 58583 | Califieri  | History   |  62000 |
+| 76543 | Singh      | Finance   |  80000 |
+| 76766 | Crick      | Biology   |  72000 |
+| 83821 | Brandt     | Comp.Sci. |  92000 |
+| 98345 | Kim        | Elec.Eng. |  80000 |
++-------+------------+-----------+--------+
+12 rows in set (0.01 sec)
+
+mysql> create table takes(
+    -> nim int not null,
+    -> sks int,
+    -> beasiswa text,
+    -> primary key (nim),
+    -> constraint fk_takes_student
+    -> foreign key (nim) references student (id)
+    -> )engine = InnoDB;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++----------------------------------+
+| Tables_in_university_instructors |
++----------------------------------+
+| student                          |
+| takes                            |
++----------------------------------+
+2 rows in set (0.01 sec)
+
+mysql> desribe takes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desribe takes' at line 1
+mysql> describe takes;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| nim      | int  | NO   | PRI | NULL    |       |
+| sks      | int  | YES  |     | NULL    |       |
+| beasiswa | text | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> show create table takes;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table
+                                                                                                       |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| takes | CREATE TABLE `takes` (
+  `nim` int NOT NULL,
+  `sks` int DEFAULT NULL,
+  `beasiswa` text,
+  PRIMARY KEY (`nim`),
+  CONSTRAINT `fk_takes_student` FOREIGN KEY (`nim`) REFERENCES `student` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> insert into takes(nim,beasiswa) values (22222,'kampus Merdeka');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from takes;
++-------+------+----------------+
+| nim   | sks  | beasiswa       |
++-------+------+----------------+
+| 22222 | NULL | kampus Merdeka |
++-------+------+----------------+
+1 row in set (0.00 sec)
+
+mysql> truncate takes;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe takes;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| nim      | int  | NO   | PRI | NULL    |       |
+| sks      | int  | YES  |     | NULL    |       |
+| beasiswa | text | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table takes
+    -> add column nama
+    -> after nim;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'after nim' at line 3
+mysql> alter table takes
+    -> add column nama varchar(20) not null after nim;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe takes;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| nim      | int         | NO   | PRI | NULL    |       |
+| nama     | varchar(20) | NO   |     | NULL    |       |
+| sks      | int         | YES  |     | NULL    |       |
+| beasiswa | text        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table takes
+    -> modify sks int not null;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe takes;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| nim      | int         | NO   | PRI | NULL    |       |
+| nama     | varchar(20) | NO   |     | NULL    |       |
+| sks      | int         | NO   |     | NULL    |       |
+| beasiswa | text        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into takes(nim,sks,beasiswa) values (22222,135,'kampus Merdeka');
+ERROR 1364 (HY000): Field 'nama' doesn't have a default value
+mysql> insert into takes(nim,sks,beasiswa,nama) values (22222,135,'kampus Merdeka',yudhy);
+ERROR 1054 (42S22): Unknown column 'yudhy' in 'field list'
+mysql> insert into takes(nim,sks,beasiswa,nama) values (22222,135,'kampus Merdeka','yudhy');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from takes;
++-------+-------+-----+----------------+
+| nim   | nama  | sks | beasiswa       |
++-------+-------+-----+----------------+
+| 22222 | yudhy | 135 | kampus Merdeka |
++-------+-------+-----+----------------+
+1 row in set (0.00 sec)
+
+mysql> alter table takes
+    -> drop column nama;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from takes;
++-------+-----+----------------+
+| nim   | sks | beasiswa       |
++-------+-----+----------------+
+| 22222 | 135 | kampus Merdeka |
++-------+-----+----------------+
+1 row in set (0.00 sec)
+
+mysql> select from student where salary = 90000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from student where salary = 90000' at line 1
+mysql> select * from student where salary = 90000;
++-------+------+-----------+--------+
+| id    | name | dept_name | salary |
++-------+------+-----------+--------+
+| 12121 | Wu   | Finance   |  90000 |
++-------+------+-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> update student
+    -> set salary=salary+5000
+    -> where id=12121;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student where id=12121;
++-------+------+-----------+--------+
+| id    | name | dept_name | salary |
++-------+------+-----------+--------+
+| 12121 | Wu   | Finance   |  95000 |
++-------+------+-----------+--------+
+1 row in set (0.00 sec)

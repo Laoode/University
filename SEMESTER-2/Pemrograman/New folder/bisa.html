@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: "Courier New", monospace;
+      }
+
+      div {
+        max-width: 500px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #0a0a0a;
+        border: 1px solid #00ff00;
+        box-shadow: 0 0 10px #00ff00;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 24px;
+      }
+
+      table {
+        margin: 20px auto;
+      }
+
+      label {
+        font-size: 18px;
+      }
+
+      input[type="number"] {
+        padding: 5px;
+        width: 100px;
+        font-size: 16px;
+      }
+
+      select {
+        padding: 5px;
+        font-size: 16px;
+        width: 170px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #00ff00;
+        color: #000;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      button:hover {
+        background-color: #ff00ff;
+        color: #000;
+      }
+
+      p {
+        font-size: 16px;
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Muh. Afdal Ziqri Ramadhan<br />E1E122065</h1>
+      <table>
+        <tr>
+          <td><label for="na">Nilai A:</label></td>
+          <td><input type="number" id="na" name="na" /></td>
+        </tr>
+        <tr>
+          <td><label for="nb">Nilai B:</label></td>
+          <td><input type="number" id="nb" name="nb" /></td>
+        </tr>
+        <tr>
+          <td><label for="op">Operasi:</label></td>
+          <td>
+            <select name="op" id="op">
+              <option value="jum">+</option>
+              <option value="kur">-</option>
+              <option value="kal">*</option>
+              <option value="bag">/</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center">
+            <button onclick="hitung()">Hitung</button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><p id="demo">60,50,89,90,45,65,85,88,100,52</p></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center">
+            <button onclick="hitungKelipatan()">Bilangan kel 5</button>
+            <button onclick="pushArray()">Push Array</button>
+          </td>
+        </tr>
+      </table>
+      <script>
+        let kel = [60, 50, 89, 90, 45, 65, 85, 88, 100, 52];
+
+        function hitung() {
+          const na = parseInt(document.getElementById("na").value);
+          const nb = parseInt(document.getElementById("nb").value);
+          const operasi = document.getElementById("op").value;
+          let hasil;
+
+          if (operasi === "jum") {
+            hasil = na + nb;
+          } else if (operasi === "kur") {
+            hasil = na - nb;
+          } else if (operasi === "kal") {
+            hasil = na * nb;
+          } else if (operasi === "bag") {
+            hasil = na / nb;
+          }
+
+          alert(`Hasil operasi: ${hasil}`);
+        }
+
+        function hitungKelipatan() {
+          let count = 0;
+          for (const num of kel) {
+            if (num === 5 || num % 5 === 0) {
+              count++;
+            }
+          }
+          alert(`Jumlah bilangan kelipatan 5: ${count}`);
+        }
+
+        function pushArray() {
+          kel.push(10);
+          document.getElementById("demo").innerHTML = kel.join(", ");
+        }
+      </script>
+    </div>
+  </body>
+</html>
