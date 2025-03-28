@@ -1,0 +1,282 @@
+program day1;
+
+var
+  jml, total_bayar: integer;
+  z: string;
+
+begin
+  writeln('parkir per jam harga standar 1.000');
+  writeln('parkir lama lebih dari 5 - 7 jam Rp.750');
+
+  write('Masukkan Jumlah jam: ');   // input
+  readln(jml);
+
+  if (jml>=2) and (jml< 5) then
+    total_bayar := jml * 1000             2
+  else if jml = 1 then
+  begin
+    writeln('gratis');
+    readln;
+    exit;
+  end
+  else if (jml >= 5) and (jml <= 7) then
+    total_bayar := jml * 750;
+
+  writeln('total bayar parkir adalah = ', total_bayar);
+  readln;
+end.
+
+
+
+
+
+parkir per jam harga standar 1.000
+parkir lama lebih dari 5 - 7 jam Rp.750
+Masukkan Jumlah jam: 4
+total bayar parkir adalah = 4000
+
+
+
+
+program Project1;
+
+var
+  i,beras_kg,beras_karung,jml_kg,jml_krg:integer;
+  beras_liter,jml_liter:double;
+  x:double;
+  z:string;
+
+begin
+  write('Masukkan Jumlah: ');   //input
+  readln(i);
+
+  beras_kg:=20000;
+  beras_karung:=25;
+  beras_liter:=0.1 ;
+
+
+  jml_kg:=i*beras_kg;
+  jml_liter:=(i*beras_kg)-(i*beras_kg*beras_liter);
+  jml_krg:=i*beras_kg*beras_karung;
+
+  writeln('Jumlah bayar kilogram = ',i,' kg x ',beras_kg,' = ',jml_kg);
+  writeln('Jumlah bayar liter = (',i,' x ',beras_kg,') - (',i,' x ',beras_kg,' x ',beras_liter:2:1,') = ', jml_liter:2:0);
+  writeln('Jumlah bayar karung= ',i,' karung x ',beras_kg,' x ',beras_karung,' = ',jml_krg );
+  readln;
+end.
+
+
+
+
+
+program Project1;
+
+var
+  jml, total_bayar: integer;
+  z: string;
+
+begin
+  writeln('parkir per jam harga standar 1.000');
+  writeln('parkir lama lebih dari 5 - 7 jam Rp.750');
+
+  write('Masukkan Jumlah jam: ');   // input
+  readln(jml);
+
+  if (jml>=2) and (jml< 5) then
+    total_bayar := jml * 1000
+  else if jml = 1 then
+  begin
+    writeln('gratis');
+    readln;
+    exit;
+  end
+  else if (jml >= 5) and (jml <= 7) then
+    total_bayar := jml * 750;
+
+  writeln('total bayar parkir adalah = ', total_bayar);
+  readln;
+end.
+
+
+
+
+
+
+
+
+program day1;
+
+var
+  jml, total_bayar,i: integer;
+  z: string;
+procedure inc_for;
+begin
+  for i:=1 to 10 do
+     writeln('data ke ',i);
+end;
+procedure dec_for;
+begin
+  for i:=10 downto 1 do
+     writeln('data ke ',i);
+end;
+// The Main Program
+begin
+  inc_for;
+  dec_for;
+  readln;
+end.
+
+
+
+program day1;
+
+//Variable Global
+var
+  i: integer;
+  z: string;
+procedure inc_for(awal,akhir:integer);
+begin
+  for i:=awal to akhir do
+     writeln('data ke ',i);
+end;
+procedure dec_for(awal,akhir:integer);
+begin
+  for i:=awal downto akhir do
+     writeln('data ke ',i);
+end;
+// The Main Program
+var a,k:integer; // Variable Local
+begin
+  write('Masukkan nilai awal ');
+  readln(a);
+  write('Masukkan nilai akhir ');
+  readln(k);
+
+  inc_for(a,k);
+  writeln('');
+
+  write('Masukkan nilai awal ');
+  readln(k);
+  write('Masukkan nilai akhir ');
+  readln(a);
+
+  dec_for(k,a);
+  readln;
+end.
+
+
+
+
+
+
+program day1;
+
+//Variable Global
+var
+  i: integer;
+
+procedure while_inc(a,k,inc:integer);
+begin
+ i:=a;   //inisialisasi
+ while i<=k do //perulangan
+    begin
+    writeln('data i ke - ',i);
+    i:=i+inc;   //increment
+    end;
+end;
+
+procedure while_dec(a,k,dec:integer);
+begin
+ i:=k;   //inisialisasi
+ while i>=a do //perulangan
+    begin
+    writeln('data i ke - ',i);
+    i:=i-dec;   //increment
+    end;
+end;
+
+begin
+  while_inc(1,10,2);
+  readln;
+
+  while_dec(1,10,2); // Memanggil dengan batas bawah 1, dan nilai awal 10
+  readln;
+end.
+
+program day1;
+
+//Variable Global
+var
+  i: integer;
+procedure repeat_until(a,k:integer);
+begin
+i:=1;
+repeat
+  writeln('data ke-' ,i);
+  i:=i+1;
+until i>10 ;
+readln;
+end;
+
+var a,k:integer; // Variable Local
+begin
+  write('Masukkan nilai awal ');
+  readln(a);
+  write('Masukkan nilai akhir ');
+  readln(k);
+
+   repeat_until(a,k);
+   readln;
+end.
+
+
+
+program day1;
+
+//Variable Global
+var
+  i: integer;
+// The Main Program
+// Variable Local
+begin
+ i:=1;   //inisialisasi
+ while i<=10 do //perulangan
+    begin
+    writeln('data i ke - ',i);
+    i:=i+3;   //increment
+    end;
+  readln;
+end.
+
+
+program day1;
+
+//Variable Global
+var
+  cel,kelvin: integer;
+  fahren,reamur:double;
+
+// Variable Local
+begin
+  write('Masukkan Suhu Celcius ');
+  readln(cel);
+
+  fahren:=  (cel*9/5) + 32;
+  reamur:=  cel*4/5;
+  kelvin:= 273+cel;
+  writeln('Konversi rumus celcius ke fahrenheit adalah');
+  writeln('((9/5) x ',cel,') + 32 celcius maka ',cel,' celcius ',fahren:2:0,' Fahrenheit');
+
+  writeln('Konversi rumus celcius ke reamur adalah');
+  writeln('((4/5) x ',cel,')  celcius maka ',cel,' celcius ',reamur:2:0,' Reamur');
+
+  writeln('Konversi rumus celcius ke kelvin adalah');
+  writeln('(273 + ',cel,')  celcius maka ',cel,' celcius ',kelvin,' Reamur');
+  readln;
+end.
+
+
+
+
+
+
